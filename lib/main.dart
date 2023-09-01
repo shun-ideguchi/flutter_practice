@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      initialRoute: '/',
-      routes: {
-        '/next': (context) => NextPage(),
-      },
+      // initialRoute: '/',
+      // routes: {
+      //   '/next': (context) => NextPage(),
+      // },
     );
   }
 }
@@ -46,6 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  String text = '次へ';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,14 +56,18 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: ElevatedButton(
-          child: Text('次へ'),
-          onPressed: () {
+          child: Text(text),
+          onPressed: () async {
             //  画面遷移のコード
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => NextPage()),
-            // );
-            Navigator.pushNamed(context, '/next');
+            final result = await Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NextPage('TEST')),
+            );
+            setState(() {
+              text = result;
+            });
+            print(result);
+            // Navigator.pushNamed(context, '/next');
           },
         ),
       ),

@@ -19,10 +19,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      // initialRoute: '/',
-      // routes: {
-      //   '/next': (context) => NextPage(),
-      // },
     );
   }
 }
@@ -54,21 +50,39 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('KBOYのFlutter'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: Text(text),
-          onPressed: () async {
-            //  画面遷移のコード
-            final result = await Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NextPage('TEST')),
-            );
-            setState(() {
-              text = result;
-            });
-            print(result);
-            // Navigator.pushNamed(context, '/next');
-          },
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // // webにある画像を表示
+            // Image.network(
+            //     'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+
+            // // ディレクトリに保存した画像を表示
+            // Image.asset('images/creative_mono.png'),
+
+            // // アイコンを表示
+            Icon(
+              Icons.print,
+              size: 100,
+            ),
+            ElevatedButton(
+              child: Text(text),
+              onPressed: () async {
+                //  画面遷移のコード
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NextPage('TEST')),
+                );
+                setState(() {
+                  text = result;
+                });
+                print(result);
+              },
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

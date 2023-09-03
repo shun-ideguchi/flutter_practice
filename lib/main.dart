@@ -44,6 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   String text = '次へ';
 
+  final myFocusNode = FocusNode();
+
+  String name = '初期値';
+
+  final myController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,41 +59,39 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         width: double.infinity,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              width: double.infinity,
-              child: Text(
-                'KBOY',
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 70,
-                  // color: Colors.green,
-                  // fontWeight: FontWeight.bold,
-                  // fontStyle: FontStyle.italic,
-                  //   decoration: TextDecoration.underline,
-                  //   foreground: Paint()
-                  //     ..style = PaintingStyle.stroke
-                  //     ..strokeWidth = 3
-                  //     ..color = Colors.blue,
-                ),
+            TextField(
+              autofocus: true,
+              decoration: InputDecoration(
+                hintText: '名前',
+              ),
+              onChanged: (text) {
+                name = text;
+                print('First text field: $name (${name.characters.length})');
+              },
+            ),
+            TextField(
+              controller: myController,
+              focusNode: myFocusNode,
+              decoration: InputDecoration(
+                hintText: '趣味',
               ),
             ),
-            DefaultTextStyle(
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.purple,
-              ),
-              child: Column(
-                children: [
-                  Text('ジーコさん'),
-                  Text('ジーコさん'),
-                  Text('ジーコさん'),
-                ],
-              ),
-            ),
-            Text('ジーコさん'),
+            ElevatedButton(
+              onPressed: () {
+                // // TODO: ここにフォーカスするためのコード
+                // myFocusNode.requestFocus();
+                // print(myController.text);
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text(myController.text),
+                      );
+                    });
+              },
+              child: Text('新規登録する'),
+            )
           ],
         ),
       ),

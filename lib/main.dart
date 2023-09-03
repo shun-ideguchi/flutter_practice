@@ -56,40 +56,41 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // // webにある画像を表示
-            // Image.network(
-            //     'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
-
-            // // ディレクトリに保存した画像を表示
-            // Image.asset('images/creative_mono.png'),
-
-            // // アイコンを表示
-            Icon(
-              Icons.print,
-              size: 100,
+            Container(
+              width: double.infinity,
+              child: Text(
+                'KBOY',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 70,
+                  // color: Colors.green,
+                  // fontWeight: FontWeight.bold,
+                  // fontStyle: FontStyle.italic,
+                  //   decoration: TextDecoration.underline,
+                  //   foreground: Paint()
+                  //     ..style = PaintingStyle.stroke
+                  //     ..strokeWidth = 3
+                  //     ..color = Colors.blue,
+                ),
+              ),
             ),
-            ElevatedButton(
-              child: Text(text),
-              onPressed: () async {
-                //  画面遷移のコード
-                final result = await Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NextPage('TEST')),
-                );
-                setState(() {
-                  text = result;
-                });
-                print(result);
-              },
+            DefaultTextStyle(
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.purple,
+              ),
+              child: Column(
+                children: [
+                  Text('ジーコさん'),
+                  Text('ジーコさん'),
+                  Text('ジーコさん'),
+                ],
+              ),
             ),
+            Text('ジーコさん'),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

@@ -33,22 +33,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-      print("HelloWorld");
-    });
-  }
-
-  String text = '次へ';
-
-  final myFocusNode = FocusNode();
-
-  String name = '初期値';
-
-  final myController = TextEditingController();
+//   final items = List<String>.generate(10000, (i) => 'Item $i');
+  final items = ['KBOY1', 'KBOY2', 'KBOY3', 'KBOY4'];
 
   @override
   Widget build(BuildContext context) {
@@ -58,42 +44,59 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         width: double.infinity,
-        child: Column(
-          children: [
-            TextField(
-              autofocus: true,
-              decoration: InputDecoration(
-                hintText: '名前',
-              ),
-              onChanged: (text) {
-                name = text;
-                print('First text field: $name (${name.characters.length})');
-              },
+        child: ListView(
+          // This next line does the trick.
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            Column(
+              children: [
+                Expanded(
+                  child: Image.asset('images/creative_mono.png'),
+                ),
+                Text('data'),
+              ],
             ),
-            TextField(
-              controller: myController,
-              focusNode: myFocusNode,
-              decoration: InputDecoration(
-                hintText: '趣味',
-              ),
+            Column(
+              children: [
+                Expanded(
+                  child: Image.asset('images/creative_mono.png'),
+                ),
+                Text('data'),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                // // TODO: ここにフォーカスするためのコード
-                // myFocusNode.requestFocus();
-                // print(myController.text);
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        content: Text(myController.text),
-                      );
-                    });
-              },
-              child: Text('新規登録する'),
-            )
+            Container(
+              width: 160,
+              color: Colors.red,
+            ),
+            Container(
+              width: 160,
+              color: Colors.blue,
+            ),
+            Container(
+              width: 160,
+              color: Colors.green,
+            ),
+            Container(
+              width: 160,
+              color: Colors.yellow,
+            ),
+            Container(
+              width: 160,
+              color: Colors.orange,
+            ),
           ],
         ),
+        // ListView.builder(
+        //   itemCount: items.length,
+        //   prototypeItem: ListTile(
+        //     title: Text(items.first),
+        //   ),
+        //   itemBuilder: (context, index) {
+        //     return ListTile(
+        //       title: Text(items[index]),
+        //     );
+        //   },
+        // ),
       ),
     );
   }
